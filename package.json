@@ -16,7 +16,10 @@
     "open:issues": "open-cli https://github.com/smarterlabs/norman/issues",
     "open:netlify": "open-cli https://app.netlify.com/sites/norman/deploys",
     "open:secrets": "open-cli https://github.com/smarterlabs/norman/settings/secrets",
-    "stop": "sudo killall -9 node"
+    "publish": "lerna publish from-package --yes",
+    "stop": "sudo killall -9 node",
+    "test": "yarn run build && cd packages/sandbox && yarn run test",
+    "version": "lerna version"
   },
   "workspaces": [
     "packages/*"
