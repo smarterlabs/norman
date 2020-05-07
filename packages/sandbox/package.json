@@ -1,0 +1,23 @@
+{
+  "name": "sandbox",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "build": "dotenv -e ../../.env -- node src/index",
+    "clean": "npx del-cli dist",
+    "count": "cd dist/products && ls -1 | wc -l"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "@smarterlabs/norman": "*",
+    "@smarterlabs/norman-source-shopify": "*",
+    "del-cli": "^3.0.0",
+    "fs-extra": "^9.0.0",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0",
+    "shopify-buy": "^2.10.0"
+  }
+}

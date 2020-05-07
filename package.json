@@ -1,0 +1,42 @@
+{
+  "name": "norman",
+  "private": true,
+  "author": "https://smarterlabs.com",
+  "version": "0.0.0",
+  "scripts": {
+    "build": "cd packages/sandbox && yarn build",
+    "clean": "npx lerna run clean --stream --no-sort --concurrency 999",
+    "dev": "cd packages/sandbox && yarn dev",
+    "lint": "npx eslint ./",
+    "lint:fix": "npx eslint ./ --fix",
+    "open:actions": "open-cli https://github.com/smarterlabs/norman/actions",
+    "open:cd": "yarn open:actions",
+    "open:ci": "yarn open:actions",
+    "open:cms": "yarn open:sanity",
+    "open:issues": "open-cli https://github.com/smarterlabs/norman/issues",
+    "open:netlify": "open-cli https://app.netlify.com/sites/norman/deploys",
+    "open:secrets": "open-cli https://github.com/smarterlabs/norman/settings/secrets",
+    "stop": "sudo killall -9 node"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@smarterlabs/eslint-config": "^1.0.9",
+    "eslint": "^6.8.0",
+    "husky": "^4.2.5",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.2.2",
+    "open-cli": "^6.0.1"
+  }
+}
