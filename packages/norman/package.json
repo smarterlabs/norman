@@ -1,6 +1,6 @@
 {
   "name": "@smarterlabs/norman",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "src/index.js",
   "author": "https://smarterlabs.com",
   "scripts": {
