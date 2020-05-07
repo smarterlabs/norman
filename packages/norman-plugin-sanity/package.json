@@ -1,0 +1,28 @@
+{
+  "name": "@smarterlabs/norman-source-sanity",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "description": "Adds Sanity data to a Norman data layer",
+  "keywords": [
+    "sanity",
+    "cms",
+    "norman",
+    "static",
+    "data layer",
+    "api"
+  ],
+  "author": "https://smarterlabs.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smarterlabs/norman.git",
+    "directory": "packages/norman-source-sanity"
+  },
+  "homepage": "https://github.com/smarterlabs/norman/tree/master/packages/norman-source-sanity#readme",
+  "bugs": {
+    "url": "https://github.com/smarterlabs/norman/issues"
+  },
+  "dependencies": {
+    "@sanity/client": "^1.149.7"
+  }
+}

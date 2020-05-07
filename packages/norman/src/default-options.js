@@ -5,6 +5,6 @@ module.exports = {
 	files: {},
 	formatJson: false,
 	defaults: {
-		type: `list`,
+		type: `singleton`,
 	},
 }

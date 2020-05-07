@@ -1,7 +1,27 @@
 {
   "name": "@smarterlabs/norman-source-shopify",
+  "description": "Adds Shopify data to a Norman data layer",
   "version": "0.1.0",
   "main": "src/index.js",
+  "keywords": [
+    "shopify",
+    "e-commerce",
+    "norman",
+    "static",
+    "data layer",
+    "api"
+  ],
+  "author": "https://smarterlabs.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smarterlabs/norman.git",
+    "directory": "packages/norman-source-shopify"
+  },
+  "homepage": "https://github.com/smarterlabs/norman/tree/master/packages/norman-source-shopify#readme",
+  "bugs": {
+    "url": "https://github.com/smarterlabs/norman/issues"
+  },
   "dependencies": {
     "node-fetch": "^2.6.0",
     "shopify-buy": "^2.10.0"

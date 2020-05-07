@@ -2,10 +2,27 @@
   "name": "@smarterlabs/norman",
   "version": "0.1.0",
   "main": "src/index.js",
-  "author": "https://smarterlabs.com",
   "scripts": {
     "build": "node index",
     "clean": "del-cli dist"
+  },
+  "description": "A static data layer for modern web applications",
+  "keywords": [
+    "norman",
+    "static",
+    "data layer",
+    "api"
+  ],
+  "author": "https://smarterlabs.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smarterlabs/norman.git",
+    "directory": "packages/norman"
+  },
+  "homepage": "https://github.com/smarterlabs/norman#readme",
+  "bugs": {
+    "url": "https://github.com/smarterlabs/norman/issues"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",

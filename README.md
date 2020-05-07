@@ -1,10 +1,10 @@
 # Norman
 
-**This project is in alpha.** Use at your own risk.
+**Note:** This project is in alpha. Documentation is sparse and all APIs are subject to extreme change until beta.
 
 A static data layer for modern websites and applications.
 
-Norman takes data from APIs or any other source, and outputs JSON files.
+Norman takes data from APIs or any other source, and outputs JSON files. These JSON files can then be uploaded to serve as a static API, or be imported in your code just like a regular module.
 
 ## Installation
 
@@ -27,7 +27,7 @@ const shopifySource = require(`@smarterlabs/norman-source-shopify`)
 
 const norman = new Norman({
    // This is your JSON file "schema"
-   files: {
+   collections: {
       // Will output an "all-products.json" file containing an array of objects
       // with product data from both Shopify and Sanity
       'all-products': {

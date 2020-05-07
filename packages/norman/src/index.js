@@ -51,11 +51,18 @@ async function build(){
 	return this
 }
 
-function add(fileName, data, options) {
+function add(label, data, options) {
 	options = {
 		...this.options.defaults,
-		...this.options.files[fileName],
+		...this.options.collections[label],
 		...options,
+	}
+	// If we're overriding the path
+	let fileName = label
+	if(options.path){
+		if(typeof options.path == `function`){
+			fileName = options.path(data)
+		}
 	}
 	let { files } = this
 
@@ -72,14 +79,12 @@ function add(fileName, data, options) {
 			let index = findByUID(files[fileName], data, options.uid)
 			if (index > -1){
 				if (options.merge == `shallow`) {
-					console.log(`shallow merge`)
 					let obj = files[fileName][index]
 					for(let i in data){
 						obj[i] = data[i]
 					}
 				}
 				else if (options.merge == `deep`) {
-					console.log(`deep`)
 					files[fileName][index] = deepMerge(files[fileName][index], data)
 				}
 				else {
@@ -87,7 +92,6 @@ function add(fileName, data, options) {
 				}
 			}
 			else{
-				console.log(`push`)
 				files[fileName].push(data)
 			}
 		}
