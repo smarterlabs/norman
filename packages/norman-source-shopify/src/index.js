@@ -19,7 +19,7 @@ function normanSourceSanity(options){
 }
 
 const defaultOptions = {
-	maxFailures: 100,
+	maxFailures: 20,
 	fetchSize: 250,
 	timeout: 1000,
 	pageLimit: 0,
