@@ -2,9 +2,9 @@
   "name": "sandbox",
   "version": "0.2.0",
   "private": true,
-  "main": "src/index.js",
+  "main": "sandbox.js",
   "scripts": {
-    "build": "dotenv -e ../../.env -- node src/index",
+    "build": "dotenv -e ../../.env -- node sandbox",
     "clean": "npx del-cli dist",
     "count": "cd dist/products && ls -1 | wc -l"
   },

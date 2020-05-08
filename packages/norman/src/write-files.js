@@ -23,7 +23,6 @@ async function writeFiles(){
 }
 
 async function downloadAsset(path, url){
-	console.log(`downloadAsset`)
 	const contents = await download(url)
 	await outputFile(path, contents)
 }

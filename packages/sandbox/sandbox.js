@@ -3,6 +3,8 @@ const sanitySource = require(`@smarterlabs/norman-source-sanity`)
 const shopifySource = require(`@smarterlabs/norman-source-shopify`)
 const get = require(`lodash/get`)
 
+let shopifyTotal = 0
+
 const norman = new Norman({
 	collections: {
 		'all-products': {
@@ -36,6 +38,7 @@ const norman = new Norman({
 		},
 		'data:shopify:product': ({ data, add }) => {
 			let { handle } = data
+			console.log(`Fetched ${shopifyTotal += data.variants.length} Shopify variants`)
 			data.variants.forEach(variant => {
 				let { sku, id } = variant
 				add(`all-products`, {
@@ -57,8 +60,8 @@ const norman = new Norman({
 		shopifySource({
 			domain: `${process.env.SHOPIFY_STORE_NAME}.myshopify.com`,
 			accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
-			pageLimit: 2,
-			fetchSize: 1,
+			// pageLimit: 2,
+			// fetchSize: 1,
 		}),
 	],
 	dist: `dist`,

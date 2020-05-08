@@ -22,14 +22,15 @@ module.exports = async function fetchProducts({
 		if(failures >= options.maxFailures){
 			console.log(`Maximum number of errors hit (${options.maxFailures})`)
 		}
-		setTimeout(() => fetchProducts({
+		await waitFor(options.timeout)
+		await fetchProducts({
 			norman,
 			client,
 			options,
 			page,
 			failures,
 			previousFetch,
-		}), options.timeout)
+		})
 		return
 	}
 
@@ -66,4 +67,11 @@ module.exports = async function fetchProducts({
 		})
 	}
 
+}
+
+
+function waitFor(n){
+	return new Promise(resolve => {
+		setTimeout(resolve, n)
+	})
 }
