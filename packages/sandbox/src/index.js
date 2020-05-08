@@ -1,6 +1,7 @@
 const Norman = require(`@smarterlabs/norman`)
 const sanitySource = require(`@smarterlabs/norman-source-sanity`)
 const shopifySource = require(`@smarterlabs/norman-source-shopify`)
+const get = require(`lodash/get`)
 
 const norman = new Norman({
 	collections: {
@@ -28,6 +29,10 @@ const norman = new Norman({
 		},
 		'data:sanity:siteSettings': ({ data, add }) => {
 			add(`site-settings`, data)
+			add(`images`, {
+				fileName: `logo.svg`,
+				url: get(data, `logo.asset.url`),
+			})
 		},
 		'data:shopify:product': ({ data, add }) => {
 			let { handle } = data

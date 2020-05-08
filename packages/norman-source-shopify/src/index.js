@@ -14,7 +14,11 @@ function normanSourceSanity(options){
 			domain: options.domain,
 			storefrontAccessToken: options.accessToken,
 		})
-		await fetchProducts(norman, client, options)
+		await fetchProducts({
+			norman,
+			client,
+			options,
+		})
 	}
 }
 

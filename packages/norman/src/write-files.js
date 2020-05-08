@@ -1,5 +1,6 @@
 const { outputFile } = require(`fs-extra`)
 const { join } = require(`path`)
+const download = require(`download`)
 
 async function writeFiles(){
 	let promises = []
@@ -14,7 +15,17 @@ async function writeFiles(){
 		}
 		promises.push(outputFile(path, contents))
 	}
+	for(let path in this.assets){
+		let fullPath = join(this.options.dist, path)
+		promises.push(downloadAsset(fullPath, this.assets[path]))
+	}
 	await Promise.all(promises)
+}
+
+async function downloadAsset(path, url){
+	console.log(`downloadAsset`)
+	const contents = await download(url)
+	await outputFile(path, contents)
 }
 
 module.exports = writeFiles

@@ -1,4 +1,5 @@
 const deepMerge = require(`deepmerge`)
+const { basename, join } = require(`path`)
 const defaultOptions = require(`./default-options`)
 const writeFiles = require(`./write-files`)
 const findByUID = require(`./find-by-uid`)
@@ -12,6 +13,7 @@ class Norman{
 
 		this.eventListeners = {}
 		this.files = {}
+		this.assets = {}
 
 		this.on = on.bind(this)
 		this.emit = emit.bind(this)
@@ -52,6 +54,7 @@ async function build(){
 }
 
 function add(label, data, options) {
+	if(!data) return
 	options = {
 		...this.options.defaults,
 		...this.options.collections[label],
@@ -63,8 +66,11 @@ function add(label, data, options) {
 		if(typeof options.path == `function`){
 			fileName = options.path(data)
 		}
+		else{
+			fileName = options.path
+		}
 	}
-	let { files } = this
+	let { files, assets } = this
 
 	// List documents
 	if(options.type == `list`){
@@ -102,7 +108,7 @@ function add(label, data, options) {
 	}
 
 	// Singleton documents
-	else{
+	else if(options.type == `singleton`){
 		if(options.merge){
 			files[fileName] = {
 				...files[fileName],
@@ -111,6 +117,20 @@ function add(label, data, options) {
 		}
 		else {
 			files[fileName] = data
+		}
+	}
+
+	// Assets
+	else if(options.type == `asset`){
+		let filePath = fileName
+		if(typeof data == `string`){
+			data = {
+				fileName: basename(data),
+				url: data,
+			}
+		}
+		if (data.fileName && data.url) {
+			assets[join(filePath, data.fileName)] = data.url
 		}
 	}
 
