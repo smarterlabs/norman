@@ -16,6 +16,9 @@ const norman = new Norman({
 		'site-settings': {
 			type: `singleton`,
 		},
+		'images': {
+			type: `asset`,
+		},
 	},
 	on: {
 		'data:sanity:product': ({ data, add }) => {
@@ -54,6 +57,7 @@ const norman = new Norman({
 		}),
 	],
 	dist: `dist`,
+	filetype: `js`,
 	formatJson: process.env.NODE_ENV == `production` ? 0 : 3,
 })
 

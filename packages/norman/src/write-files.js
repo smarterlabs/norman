@@ -8,7 +8,10 @@ async function writeFiles(){
 		if (!formatJson) formatJson = null
 		else if(formatJson == true) formatJson = 3
 		let contents = JSON.stringify(this.files[originalPath], null, formatJson)
-		let path = join(this.options.dist, `${originalPath}.json`)
+		let path = join(this.options.dist, `${originalPath}.${this.options.filetype}`)
+		if(this.options.filetype == `js`){
+			contents = `module.exports = ${contents}`
+		}
 		promises.push(outputFile(path, contents))
 	}
 	await Promise.all(promises)

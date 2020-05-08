@@ -1,5 +1,6 @@
 module.exports = {
 	dist: `dist`,
+	filetype: `json`,
 	plugins: [],
 	on: {},
 	files: {},
