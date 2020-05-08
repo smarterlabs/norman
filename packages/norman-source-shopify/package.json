@@ -1,7 +1,7 @@
 {
   "name": "@smarterlabs/norman-source-shopify",
   "description": "Adds Shopify data to a Norman data layer",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "src/index.js",
   "keywords": [
     "shopify",
