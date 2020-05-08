@@ -4,7 +4,7 @@ module.exports = {
 	plugins: [],
 	on: {},
 	files: {},
-	formatJson: false,
+	space: false,
 	defaults: {
 		type: `singleton`,
 	},

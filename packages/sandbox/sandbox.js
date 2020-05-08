@@ -60,13 +60,13 @@ const norman = new Norman({
 		shopifySource({
 			domain: `${process.env.SHOPIFY_STORE_NAME}.myshopify.com`,
 			accessToken: process.env.SHOPIFY_ACCESS_TOKEN,
-			// pageLimit: 2,
-			// fetchSize: 1,
+			pageLimit: 2,
+			fetchSize: 1,
 		}),
 	],
 	dist: `dist`,
 	filetype: `js`,
-	formatJson: process.env.NODE_ENV == `production` ? 0 : 3,
+	space: process.env.NODE_ENV == `production` ? 0 : 3,
 })
 
 norman.build()

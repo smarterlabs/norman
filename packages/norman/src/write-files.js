@@ -1,17 +1,25 @@
 const { outputFile } = require(`fs-extra`)
 const { join } = require(`path`)
 const download = require(`download`)
+const js = require(`javascript-stringify`)
 
 async function writeFiles(){
 	let promises = []
 	for (let originalPath in this.files) {
-		let { formatJson } = this.options
-		if (!formatJson) formatJson = null
-		else if(formatJson == true) formatJson = 3
-		let contents = JSON.stringify(this.files[originalPath], null, formatJson)
+		let { space } = this.options
+		if (!space) space = null
+		else if (space == true) space = 3
+		let contents
 		let path = join(this.options.dist, `${originalPath}.${this.options.filetype}`)
-		if(this.options.filetype == `js`){
-			contents = `module.exports = ${contents}`
+		if(this.options.filetype == `json`){
+			contents = JSON.stringify(this.files[originalPath], null, space)
+		}
+		else if(this.options.filetype == `js`){
+			contents = [
+				`module.exports`,
+				`=`,
+				js.stringify(this.files[originalPath], null, space),
+			].join(space ? ` ` : ``)
 		}
 		promises.push(outputFile(path, contents))
 	}
