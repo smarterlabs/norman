@@ -3,6 +3,8 @@ const { join } = require(`path`)
 const download = require(`download`)
 const js = require(`javascript-stringify`)
 
+const cwd = process.cwd()
+
 async function writeFiles(){
 	let promises = []
 	for (let originalPath in this.files) {
@@ -10,7 +12,7 @@ async function writeFiles(){
 		if (!space) space = null
 		else if (space == true) space = 3
 		let contents
-		let path = join(this.options.dist, `${originalPath}.${this.options.filetype}`)
+		let path = join(cwd, this.options.dist, `${originalPath}.${this.options.filetype}`)
 		if(this.options.filetype == `json`){
 			contents = JSON.stringify(this.files[originalPath], null, space)
 		}
@@ -24,7 +26,7 @@ async function writeFiles(){
 		promises.push(outputFile(path, contents))
 	}
 	for(let path in this.assets){
-		let fullPath = join(this.options.dist, path)
+		let fullPath = join(cwd, this.options.dist, path)
 		promises.push(downloadAsset(fullPath, this.assets[path]))
 	}
 	await Promise.all(promises)
