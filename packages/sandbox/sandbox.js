@@ -37,16 +37,12 @@ const norman = new Norman({
 			})
 		},
 		'data:shopify:product': ({ data, add }) => {
-			let { handle } = data
 			console.log(`Fetched ${shopifyTotal += data.variants.length} Shopify variants`)
 			data.variants.forEach(variant => {
-				let { sku, id } = variant
+				let { sku } = variant
 				add(`all-products`, {
 					sku,
-					shopify: {
-						id,
-						handle,
-					},
+					...data,
 				})
 			})
 		},

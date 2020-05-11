@@ -17,11 +17,13 @@ async function writeFiles(){
 			contents = JSON.stringify(this.files[originalPath], null, space)
 		}
 		else if(this.options.filetype == `js`){
-			contents = [
-				`module.exports`,
-				`=`,
-				js.stringify(this.files[originalPath], null, space),
-			].join(space ? ` ` : ``)
+			contents = this.files[originalPath]
+			// Removes functions
+			contents = JSON.stringify(contents)
+			contents = JSON.parse(contents)
+
+			contents = js.stringify(contents, null, space)
+			contents = [`module.exports`, `=`, contents].join(space ? ` ` : ``)
 		}
 		promises.push(outputFile(path, contents))
 	}
