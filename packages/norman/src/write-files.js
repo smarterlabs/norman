@@ -2,28 +2,35 @@ const { outputFile } = require(`fs-extra`)
 const { join } = require(`path`)
 const download = require(`download`)
 const js = require(`javascript-stringify`)
+const toml = require(`@iarna/toml`)
 
 const cwd = process.cwd()
 
 async function writeFiles(){
 	let promises = []
 	for (let originalPath in this.files) {
-		let { space } = this.options
+		let options = {
+			...this.options,
+			...this.options.collections[originalPath],
+		}
+		let { space } = options
 		if (!space) space = null
 		else if (space == true) space = 3
-		let contents
-		let path = join(cwd, this.options.dist, `${originalPath}.${this.options.filetype}`)
-		if(this.options.filetype == `json`){
-			contents = JSON.stringify(this.files[originalPath], null, space)
+		let contents = this.files[originalPath]
+		let path = join(cwd, options.dist, `${originalPath}.${options.filetype}`)
+		if(this.options.filetype === `json`){
+			contents = JSON.stringify(contents, null, space)
 		}
-		else if(this.options.filetype == `js`){
-			contents = this.files[originalPath]
+		else if(options.filetype === `js`){
 			// Removes functions
 			contents = JSON.stringify(contents)
 			contents = JSON.parse(contents)
 
 			contents = js.stringify(contents, null, space)
 			contents = [`module.exports`, `=`, contents].join(space ? ` ` : ``)
+		}
+		else if(options.filetype === `toml`){
+			contents = toml.stringify(contents)
 		}
 		promises.push(outputFile(path, contents))
 	}

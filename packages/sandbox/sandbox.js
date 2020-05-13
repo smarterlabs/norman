@@ -18,6 +18,7 @@ const norman = new Norman({
 		},
 		'site-settings': {
 			type: `singleton`,
+			filetype: `toml`,
 		},
 		'images': {
 			type: `asset`,
