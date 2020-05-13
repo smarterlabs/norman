@@ -19,7 +19,8 @@ module.exports = function add(label, data, options) {
 			fileName = options.path
 		}
 	}
-	let { files, assets } = this
+	let { files, fileOptions, assets } = this
+	fileOptions[fileName] = options
 
 	// List documents
 	if (options.type == `list`) {

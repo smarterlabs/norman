@@ -13,6 +13,7 @@ module.exports = class Norman {
 
 		this.eventListeners = {}
 		this.files = {}
+		this.fileOptions = {}
 		this.assets = {}
 
 		this.on = on.bind(this)

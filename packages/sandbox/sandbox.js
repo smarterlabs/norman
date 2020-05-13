@@ -15,6 +15,7 @@ const norman = new Norman({
 			path: ({ sku }) => `product/${sku}`,
 			type: `singleton`,
 			merge: `shallow`,
+			filetype: `json`,
 		},
 		'site-settings': {
 			type: `singleton`,

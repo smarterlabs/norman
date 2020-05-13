@@ -11,7 +11,7 @@ async function writeFiles() {
 	for (let originalPath in this.files) {
 		let options = {
 			...this.options,
-			...this.options.collections[originalPath],
+			...this.fileOptions[originalPath],
 		}
 		let { space } = options
 		if (!space) space = null
