@@ -6,7 +6,7 @@ const toml = require(`@iarna/toml`)
 
 const cwd = process.cwd()
 
-async function writeFiles(){
+async function writeFiles() {
 	let promises = []
 	for (let originalPath in this.files) {
 		let options = {
@@ -18,10 +18,10 @@ async function writeFiles(){
 		else if (space == true) space = 3
 		let contents = this.files[originalPath]
 		let path = join(cwd, options.dist, `${originalPath}.${options.filetype}`)
-		if(this.options.filetype === `json`){
+		if (options.filetype === `json`) {
 			contents = JSON.stringify(contents, null, space)
 		}
-		else if(options.filetype === `js`){
+		else if (options.filetype === `js`) {
 			// Removes functions
 			contents = JSON.stringify(contents)
 			contents = JSON.parse(contents)
@@ -29,19 +29,23 @@ async function writeFiles(){
 			contents = js.stringify(contents, null, space)
 			contents = [`module.exports`, `=`, contents].join(space ? ` ` : ``)
 		}
-		else if(options.filetype === `toml`){
+		else if (options.filetype === `toml`) {
 			contents = toml.stringify(contents)
 		}
 		promises.push(outputFile(path, contents))
 	}
-	for(let path in this.assets){
-		let fullPath = join(cwd, this.options.dist, path)
+	for (let path in this.assets) {
+		let options = {
+			...this.options,
+			...this.options.collections[path],
+		}
+		let fullPath = join(cwd, options.dist, path)
 		promises.push(downloadAsset(fullPath, this.assets[path]))
 	}
 	await Promise.all(promises)
 }
 
-async function downloadAsset(path, url){
+async function downloadAsset(path, url) {
 	const contents = await download(url)
 	await outputFile(path, contents)
 }
