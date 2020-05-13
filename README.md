@@ -31,16 +31,19 @@ const norman = new Norman({
       // Will output an "all-products.json" file containing an array of objects
       // with product data from both Shopify and Sanity
       'all-products': {
-         type: `list`,     // Data gets added to an array
-         uid: `sku`,       // Object will be merged if the the "sku" property is the same
+         type: `list`,        // Data gets added to an array
+         uid: `sku`,          // Object will be merged if the the "sku" property is the same
          merge: `shallow`,
       },
       'site-settings': {
          type: `singleton`,   // Data stored exactly how it was passed in
          merge: `deep`,
+         data: {              // Default data
+            title: `Missing Title`,
+         },
       },
       'images': {
-         type: `asset`,    // Downloads a URL locally
+         type: `asset`,       // Downloads a URL locally
       },
    },
    // An object of event handler functions
