@@ -10,6 +10,10 @@ module.exports = async function build() {
 		let collection = collections[name]
 		if (collection.data) {
 			this.files[name] = collection.data
+			this.fileOptions[name] = {
+				...this.fileOptions[name],
+				...collection,
+			}
 		}
 	}
 
