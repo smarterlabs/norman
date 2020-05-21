@@ -14,7 +14,7 @@ exports.emit = function(labels, data, isPromise) {
 			if (!els[label]) return
 			els[label].forEach(event => event({ data, ...this }))
 		})
-		return this
+		return data
 	}
 	const promises = []
 	labels.forEach(label => {

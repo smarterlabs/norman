@@ -1,6 +1,7 @@
 const Norman = require(`@smarterlabs/norman`)
 const sanitySource = require(`@smarterlabs/norman-source-sanity`)
 const shopifySource = require(`@smarterlabs/norman-source-shopify`)
+const lunrPlugin = require(`@smarterlabs/norman-plugin-lunr`)
 const get = require(`lodash/get`)
 
 let shopifyTotal = 0
@@ -19,6 +20,10 @@ const norman = new Norman({
 		},
 		'site-settings': {
 			type: `singleton`,
+		},
+		'lunr-index': {
+			type: `lunr`,
+			fields: [`sku`, `title`],
 		},
 		netlify: {
 			type: `singleton`,
@@ -44,6 +49,7 @@ const norman = new Norman({
 	on: {
 		'data:sanity:product': ({ data, add }) => {
 			data.sku = data.defaultProductVariant.sku
+			add(`lunr-index`, data)
 			add(`all-products`, data)
 			add(`product`, data)
 		},
@@ -77,6 +83,7 @@ const norman = new Norman({
 			pageLimit: 2,
 			fetchSize: 1,
 		}),
+		lunrPlugin(),
 	],
 	dist: `dist`,
 	filetype: `js`,

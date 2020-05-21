@@ -1,0 +1,29 @@
+{
+  "name": "@smarterlabs/norman-plugin-lunr",
+  "description": "Creates lunr indexes with Norman",
+  "version": "0.0.0",
+  "main": "src/index.js",
+  "keywords": [
+    "lunr",
+    "search",
+    "index",
+    "norman",
+    "static",
+    "data layer",
+    "api"
+  ],
+  "author": "https://smarterlabs.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smarterlabs/norman.git",
+    "directory": "packages/norman-plugin-lunr"
+  },
+  "homepage": "https://github.com/smarterlabs/norman/tree/master/packages/norman-plugin-lunr#readme",
+  "bugs": {
+    "url": "https://github.com/smarterlabs/norman/issues"
+  },
+  "dependencies": {
+    "lunr": "^2.3.8"
+  }
+}

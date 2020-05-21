@@ -9,6 +9,7 @@ module.exports = function add(label, data, options) {
 		...this.options.collections[label],
 		...options,
 	}
+
 	// If we're overriding the path
 	let fileName = label
 	if (options.path) {
@@ -21,6 +22,7 @@ module.exports = function add(label, data, options) {
 	}
 	let { files, fileOptions, assets } = this
 	fileOptions[fileName] = options
+
 
 	// List documents
 	if (options.type == `list`) {
@@ -86,7 +88,6 @@ module.exports = function add(label, data, options) {
 			assets[join(filePath, data.fileName)] = data.url
 		}
 	}
-
 
 	return this
 }

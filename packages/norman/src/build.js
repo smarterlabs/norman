@@ -1,8 +1,15 @@
 const get = require(`lodash/get`)
 
 module.exports = async function build() {
+
+	// Init plugins
+	console.log(`Loading plugins...`)
+	this.options.plugins.forEach(plugin => plugin(this))
+	console.log(`Loaded plugins`)
+
+	await this.emit(`preBuild`, null, true)
+
 	let start = new Date()
-	let promises = []
 
 	// Populate with default data
 	let collections = get(this, `options.collections`, {})
@@ -17,13 +24,9 @@ module.exports = async function build() {
 		}
 	}
 
-	// Add data from plugins
-	this.options.plugins.forEach(plugin => {
-		promises.push(plugin(this))
-	})
-	console.log(`Loading plugins...`)
-	await Promise.all(promises)
-	console.log(`Loaded plugins`)
+	console.log(`Building content...`)
+	await this.emit(`build`, null, true)
+	console.log(`Built content`)
 
 	// Write results to files
 	console.log(`Writing files...`)

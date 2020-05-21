@@ -9,15 +9,19 @@ function normanSourceSanity(options){
 		...defaultOptions,
 		...options,
 	}
-	return async norman => {
-		const client = Client.buildClient({
-			domain: options.domain,
-			storefrontAccessToken: options.accessToken,
-		})
-		await fetchProducts({
-			norman,
-			client,
-			options,
+	return norman => {
+		norman.on(`build`, async () => {
+			console.log(`Fetching data from Shopify...`)
+			const client = Client.buildClient({
+				domain: options.domain,
+				storefrontAccessToken: options.accessToken,
+			})
+			await fetchProducts({
+				norman,
+				client,
+				options,
+			})
+			console.log(`Fetched data from Shopify.`)
 		})
 	}
 }

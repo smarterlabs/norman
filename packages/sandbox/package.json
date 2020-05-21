@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@smarterlabs/norman": "^0.5.4",
+    "@smarterlabs/norman-plugin-lunr": "*",
     "@smarterlabs/norman-source-sanity": "^1.0.1",
     "@smarterlabs/norman-source-shopify": "^0.2.1",
     "del-cli": "^3.0.0",

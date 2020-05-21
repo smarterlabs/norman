@@ -6,11 +6,13 @@ const toml = require(`@iarna/toml`)
 
 const cwd = process.cwd()
 
-async function writeFiles() {
+module.exports = async function writeFiles() {
+	console.log(`Writing files...`)
 	let promises = []
 	for (let originalPath in this.files) {
 		let options = {
 			...this.options,
+			...this.options.collections[originalPath],
 			...this.fileOptions[originalPath],
 		}
 		let { space } = options
@@ -32,6 +34,9 @@ async function writeFiles() {
 		else if (options.filetype === `toml`) {
 			contents = toml.stringify(contents)
 		}
+		const input = { options, contents }
+		this.emit(`format`, input)
+		contents = input.contents
 		promises.push(outputFile(path, contents))
 	}
 	for (let path in this.assets) {
@@ -49,5 +54,3 @@ async function downloadAsset(path, url) {
 	const contents = await download(url)
 	await outputFile(path, contents)
 }
-
-module.exports = writeFiles
