@@ -5,10 +5,11 @@ module.exports = function normanPluginLunr(){
 
 		for (let i in norman.options.collections) {
 			const collection = norman.options.collections[i]
-			if (collection.type === `lunr`)
+			if (collection.type === `lunr`) {
 				collection.lunr = true
-			collection.type = `list`
-			collection.filetype = `json`
+				collection.type = `list`
+				collection.filetype = `json`
+			}
 		}
 
 		norman.on(`format`, ({ data }) => {

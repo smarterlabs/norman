@@ -10,6 +10,8 @@ module.exports = function add(label, data, options) {
 		...options,
 	}
 
+	console.log(label, this.options.collections[label])
+
 	// If we're overriding the path
 	let fileName = label
 	if (options.path) {
@@ -55,6 +57,7 @@ module.exports = function add(label, data, options) {
 		}
 		// Append to list
 		else {
+			console.log(`options`, fileName, options)
 			files[fileName].push(data)
 		}
 	}

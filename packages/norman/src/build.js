@@ -11,6 +11,7 @@ module.exports = async function build() {
 
 	let start = new Date()
 
+
 	// Populate with default data
 	let collections = get(this, `options.collections`, {})
 	for (let name in collections) {

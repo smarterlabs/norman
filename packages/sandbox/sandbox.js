@@ -53,13 +53,6 @@ const norman = new Norman({
 			add(`all-products`, data)
 			add(`product`, data)
 		},
-		'data:sanity:siteSettings': ({ data, add }) => {
-			add(`site-settings`, data)
-			add(`images`, {
-				fileName: `logo.svg`,
-				url: get(data, `logo.asset.url`),
-			})
-		},
 		'data:shopify:product': ({ data, add }) => {
 			console.log(`Fetched ${shopifyTotal += data.variants.length} Shopify variants`)
 			data.variants.forEach(variant => {
@@ -68,6 +61,22 @@ const norman = new Norman({
 					sku,
 					...data,
 				})
+			})
+		},
+		'data:sanity:siteSettings': ({ data, add }) => {
+			add(`site-settings`, data)
+			add(`images`, {
+				fileName: `logo.svg`,
+				url: get(data, `logo.asset.url`),
+			})
+		},
+		'data:sanity:redirect': ({ add, data }) => {
+			add(`netlify`, {
+				redirects: [{
+					from: data.from,
+					to: data.to,
+					status: data.status,
+				}],
 			})
 		},
 	},
