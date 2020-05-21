@@ -1,6 +1,6 @@
 {
   "name": "@smarterlabs/norman-source-sanity",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "src/index.js",
   "description": "Adds Sanity data to a Norman data layer",
   "keywords": [
