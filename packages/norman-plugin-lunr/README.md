@@ -24,6 +24,7 @@ const norman = new Norman({
    collections: {
       'lunr-index': {
          type: `lunr`,
+         ref: `id`,
          fields: [`title`, `sku`]
       },
    },

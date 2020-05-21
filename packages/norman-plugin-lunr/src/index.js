@@ -17,6 +17,7 @@ module.exports = function normanPluginLunr(){
 			console.log(`Creating Lunr index...`)
 			data.contents = JSON.parse(data.contents)
 			const index = lunr(function () {
+				this.ref(data.options.ref)
 				data.options.fields.forEach(field => {
 					this.field(field)
 				})

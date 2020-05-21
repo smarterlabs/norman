@@ -23,6 +23,7 @@ const norman = new Norman({
 		},
 		'lunr-index': {
 			type: `lunr`,
+			ref: `_id`,
 			fields: [`sku`, `title`],
 		},
 		netlify: {
