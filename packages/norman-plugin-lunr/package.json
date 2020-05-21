@@ -1,7 +1,7 @@
 {
   "name": "@smarterlabs/norman-plugin-lunr",
   "description": "Creates lunr indexes with Norman",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "src/index.js",
   "keywords": [
     "lunr",
