@@ -1,6 +1,6 @@
 {
   "name": "sandbox",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "private": true,
   "main": "sandbox.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "dotenv-cli": "^3.1.0"
   },
   "dependencies": {
-    "@smarterlabs/norman": "^0.6.2",
+    "@smarterlabs/norman": "^0.6.3",
     "@smarterlabs/norman-plugin-lunr": "^0.1.2",
     "@smarterlabs/norman-source-sanity": "^1.1.0",
     "@smarterlabs/norman-source-shopify": "^0.3.0",
