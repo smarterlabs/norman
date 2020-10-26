@@ -6,6 +6,22 @@ const toml = require(`@iarna/toml`)
 
 const cwd = process.cwd()
 
+function removeCircularReferences(o){
+	const cache = []
+	o = JSON.stringify(o, function(_, value) {
+		if (typeof value === `object` && value !== null) {
+			if (cache.indexOf(value) !== -1) {
+				// Circular reference found, discard key
+				return
+			}
+			// Store value in our collection
+			cache.push(value)
+		}
+		return value
+	})
+	return JSON.parse(o)
+}
+
 module.exports = async function writeFiles() {
 	console.log(`Writing files...`)
 	let promises = []
@@ -19,6 +35,10 @@ module.exports = async function writeFiles() {
 		if (!space) space = null
 		else if (space == true) space = 3
 		let contents = this.files[originalPath]
+
+		// Remove circular references
+		contents = removeCircularReferences(contents)
+
 		let path = join(cwd, options.dist, `${originalPath}.${options.filetype}`)
 		if (options.filetype === `json`) {
 			contents = JSON.stringify(contents, null, space)
